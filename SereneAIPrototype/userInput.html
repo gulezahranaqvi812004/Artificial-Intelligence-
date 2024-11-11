@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mood Input - SereneAI</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            color: #333;
+        }
+
+        header {
+            background-color: #4a90e2;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 36px;
+        }
+
+        section {
+            padding: 20px;
+            max-width: 600px;
+            margin: auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        label {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        select, input, textarea {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            width: 100%;
+        }
+
+        button {
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            background-color: #4a90e2;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #357ABD;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #4a90e2;
+            color: white;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>SereneAI</h1>
+    <p>AI-Powered Mental Health Monitoring</p>
+</header>
+
+<section>
+    <h2>Mood Input</h2>
+    <form action="#" method="post">
+        <label for="mood">How are you feeling today?</label>
+        <select id="mood" name="mood" required>
+            <option value="" disabled selected>Select your mood</option>
+            <option value="happy">Happy</option>
+            <option value="sad">Sad</option>
+            <option value="anxious">Anxious</option>
+            <option value="stressed">Stressed</option>
+            <option value="neutral">Neutral</option>
+            <option value="angry">Angry</option>
+            <option value="excited">Excited</option>
+        </select>
+
+        <label for="comments">Additional Comments</label>
+        <textarea id="comments" name="comments" placeholder="Any additional thoughts or comments..." rows="4"></textarea>
+        
+        <button type="submit">Submit Mood</button>
+    </form>
+</section>
+
+<footer>
+    <p>&copy; 2024 SereneAI. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>

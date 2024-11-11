@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CampusGuide Chatbot</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Header Section with Profile -->
+    <header>
+        <div class="profile">
+            <img src="profile.jpg" alt="User Profile" class="profile-img">
+            <h1>CampusGuide</h1>
+            <p>Welcome, John Doe!</p>
+        </div>
+        <button class="theme-toggle" onclick="toggleTheme()">Toggle Theme</button>
+    </header>
+
+    <!-- Chatbox Section -->
+    <section class="chatbox-container">
+        <div class="chatbox">
+            <div class="chat-header">
+                <h2>Ask CampusGuide</h2>
+                <p>Need help finding a place on campus?</p>
+            </div>
+            <div class="chat-content" id="chat-content">
+                <!-- Chat messages will appear here -->
+                <p class="bot-message">Hi, I’m CampusGuide. How can I assist you today?</p>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="user-input" placeholder="Type your question here..." />
+                <button onclick="sendMessage()">Send</button>
+                <button onclick="startVoice()">🎤 Voice</button>
+                <button onclick="openCamera()">📷 Camera</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Camera Preview Modal -->
+    <section class="camera-modal" id="camera-modal">
+        <video id="camera" autoplay></video>
+        <button onclick="closeCamera()">Close Camera</button>
+        <button onclick="captureImage()">Capture</button>
+        <canvas id="snapshot" style="display:none;"></canvas>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>CampusGuide © 2024. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Voice assistance function using Web Speech API
+        function startVoice() {
+            const recognition = new window.SpeechRecognition();
+            recognition.interimResults = true;
+
+            recognition.onresult = (event) => {
+                const transcript = event.results[0][0].transcript;
+                document.getElementById('user-input').value = transcript;
+            };
+            
+            recognition.start();
+        }
+
+        // Sending message from the input field
+        function sendMessage() {
+            var input = document.getElementById('user-input').value;
+            if (input.trim() !== "") {
+                var userMessage = '<p class="user-message">' + input + '</p>';
+                document.getElementById('chat-content').innerHTML += userMessage;
+                document.getElementById('user-input').value = ""; // Clear input after sending
+                document.getElementById('chat-content').scrollTop = document.getElementById('chat-content').scrollHeight; // Scroll to latest message
+            }
+        }
+
+        // Toggle between light and dark theme
+        function toggleTheme() {
+            document.body.classList.toggle("dark-theme");
+        }
+
+        // Camera access using MediaDevices API
+        function openCamera() {
+            const video = document.getElementById('camera');
+            const modal = document.getElementById('camera-modal');
+            modal.style.display = 'block';
+
+            navigator.mediaDevices.getUserMedia({ video: true })
+            .then((stream) => {
+                video.srcObject = stream;
+            })
+            .catch((err) => {
+                console.error('Error accessing camera: ', err);
+            });
+        }
+
+        // Close the camera preview
+        function closeCamera() {
+            const video = document.getElementById('camera');
+            const modal = document.getElementById('camera-modal');
+            video.srcObject.getTracks().forEach(track => track.stop()); // Stop the video stream
+            modal.style.display = 'none';
+        }
+
+        // Capture image from camera and display in chat
+        function captureImage() {
+            const video = document.getElementById('camera');
+            const canvas = document.getElementById('snapshot');
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            const context = canvas.getContext('2d');
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+            
+            const imageDataURL = canvas.toDataURL('image/png'); // Capture the image
+            const imageMessage = '<p class="user-message"><img src="' + imageDataURL + '" alt="Captured Image" class="captured-img"></p>';
+            document.getElementById('chat-content').innerHTML += imageMessage;
+            document.getElementById('chat-content').scrollTop = document.getElementById('chat-content').scrollHeight;
+            
+            closeCamera(); // Close the camera modal
+        }
+    </script>
+
+</body>
+</html>

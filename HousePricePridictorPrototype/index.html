@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>House Price Predictor</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>House Price Predictor</h1>
+            <p>Get an estimated price based on property features</p>
+        </div>
+
+        <div class="form-section">
+            <form id="price-predictor-form">
+                <div class="input-group">
+                    <label for="location">Location</label>
+                    <input type="text" id="location" placeholder="Enter location">
+                </div>
+
+                <div class="input-group">
+                    <label for="size">Size (in square feet)</label>
+                    <input type="number" id="size" placeholder="Enter size in sq ft">
+                </div>
+
+                <div class="input-group">
+                    <label for="bedrooms">Number of Bedrooms</label>
+                    <input type="number" id="bedrooms" placeholder="Enter number of bedrooms">
+                </div>
+
+                <div class="input-group">
+                    <label for="bathrooms">Number of Bathrooms</label>
+                    <input type="number" id="bathrooms" placeholder="Enter number of bathrooms">
+                </div>
+
+                <div class="input-group">
+                    <label for="year">Year of Construction</label>
+                    <input type="number" id="year" placeholder="Enter year of construction">
+                </div>
+
+                <button type="submit" class="submit-btn">Predict Price</button>
+            </form>
+        </div>
+
+        <div class="result-section" id="result-section">
+            <h2>Estimated House Price: <span id="predicted-price">$0</span></h2>
+        </div>
+    </div>
+</body>
+</html>

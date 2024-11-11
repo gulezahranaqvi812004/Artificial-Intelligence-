@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExamGuard - AI Proctoring System</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* CSS Styles */
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f2f5;
+        }
+
+        .screen {
+            display: none;
+        }
+
+        .screen.active {
+            display: block;
+        }
+
+        .login-container,
+        .dashboard-container,
+        .monitoring-container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            width: 600px;
+            height: 400px;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0;
+            color: #333;
+        }
+
+        .login-container p {
+            margin: 10px 0 20px;
+            color: #666;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            width: 100%;
+            cursor: pointer;
+        }
+
+        .logout-btn, .end-monitoring-btn {
+            background-color: #dc3545;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        .exam-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        .exam-list li {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .feed-box {
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 4px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Login Screen -->
+    <section id="login-screen" class="screen active">
+        <div class="login-container">
+            <h1>ExamGuard</h1>
+            <!-- <p>AI-Powered Cheating Detection System</p> -->
+            <form id="login-form">
+                <label for="username">Username</label>
+                <input type="text" id="username" placeholder="Enter your username" required>
+
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password" required>
+
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Dashboard Screen -->
+    <section id="dashboard-screen" class="screen">
+        <div class="dashboard-container">
+            <header>
+                <h2>Welcome, Admin</h2>
+                <button class="logout-btn" onclick="logout()">Logout</button>
+            </header>
+            <h3>Available Exams</h3>
+            <ul class="exam-list">
+                <li>Exam 1 - <button class="monitor-btn" onclick="startMonitoring()">Start Monitoring</button></li>
+                <li>Exam 2 - <button class="monitor-btn" onclick="startMonitoring()">Start Monitoring</button></li>
+                <li>Exam 3 - <button class="monitor-btn" onclick="startMonitoring()">Start Monitoring</button></li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Live Monitoring Screen -->
+    <section id="monitoring-screen" class="screen">
+        <div class="monitoring-container">
+            <header>
+                <h2>Live Monitoring - Exam 1</h2>
+                <button class="end-monitoring-btn" onclick="endMonitoring()">End Monitoring</button>
+            </header>
+            <div class="live-feed">
+                <div class="feed-box">
+                    <video autoplay muted></video>
+                    <p>Student 1 - Monitoring</p>
+                </div>
+                <div class="feed-box">
+                    <video autoplay muted></video>
+                    <p>Student 2 - Monitoring</p>
+                </div>
+                <!-- Add more students as needed -->
+            </div>
+        </div>
+    </section>
+
+    <!-- JavaScript -->
+    <script>
+        // Function to switch to Dashboard after login
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            document.getElementById('login-screen').classList.remove('active');
+            document.getElementById('dashboard-screen').classList.add('active');
+        });
+
+        // Function to start live monitoring
+        function startMonitoring() {
+            document.getElementById('dashboard-screen').classList.remove('active');
+            document.getElementById('monitoring-screen').classList.add('active');
+        }
+
+        // Function to end monitoring and return to dashboard
+        function endMonitoring() {
+            document.getElementById('monitoring-screen').classList.remove('active');
+            document.getElementById('dashboard-screen').classList.add('active');
+        }
+
+        // Function to log out and return to the login screen
+        function logout() {
+            document.getElementById('dashboard-screen').classList.remove('active');
+            document.getElementById('login-screen').classList.add('active');
+        }
+    </script>
+
+</body>
+</html>

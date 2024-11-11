@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlantGuard</title>
+    <link rel="stylesheet" href="styles.css">
+    
+</head>
+<body>
+    <header>
+        <h1>PlantGuard</h1>
+        <p>Your AI-powered plant disease detection assistant</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#detect">Detect Disease</a></li>
+            <li><a href="#results">Results</a></li>
+        </ul>
+    </nav>
+
+    <section id="home">
+        <h2>Welcome to PlantGuard</h2>
+        <p>PlantGuard helps you quickly identify plant diseases by analyzing photos of your plants and offers effective treatment suggestions.</p>
+        <a href="#detect" class="button">Start Detection</a>
+    </section>
+
+    <section id="detect">
+        <h2>Detect Plant Disease</h2>
+        <form action="results.html" method="post" enctype="multipart/form-data">
+            <label for="plant-image">Upload an image of the affected plant:</label>
+            <input type="file" id="plant-image" name="plant-image" accept="image/*" required>
+            <button type="submit">Detect Disease</button>
+        </form>
+    </section>
+
+    <section id="results">
+        <h2>Diagnosis Results</h2>
+        <p><strong>Disease:</strong> Powdery Mildew</p>
+        <p><strong>Treatment Suggestion:</strong> Use sulfur-based fungicides. For organic solutions, spray neem oil once a week.</p>
+        <a href="#home" class="button">Back to Home</a>
+    </section>
+
+    <footer>
+        <p>PlantGuard © 2024. All rights reserved.</p>
+    </footer>
+</body>
+</html>

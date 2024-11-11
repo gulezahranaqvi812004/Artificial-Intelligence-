@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExamGuard - Admin Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* CSS Styles */
+
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            width: 250px;
+            background-color: #007bff;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .sidebar h2 {
+            margin: 0 0 20px;
+            font-size: 1.5em;
+            text-align: center;
+        }
+
+        .sidebar a {
+            color: white;
+            text-decoration: none;
+            margin: 15px 0;
+            padding: 10px;
+            border-radius: 6px;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar a:hover {
+            background-color: #0056b3;
+        }
+
+        /* Main Content Area */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            display: flex;
+            /* justify-content: space-between; */
+            align-items: center;
+            padding-top: 80rem;
+            padding-right: 10rem;
+            padding-left: 10rem;
+            background-color: #007bff;
+            /* Header background color */
+            color: white;
+            /* Text color */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            /* Shadow effect */
+        }
+
+        .logo {
+            font-size: 1.8em;
+            /* Logo font size */
+            font-weight: bold;
+            /* Logo font weight */
+        }
+
+        .header-links {
+            display: flex;
+            /* Align links in a row */
+            gap: 20px;
+            /* Space between header links */
+        }
+
+        .header-links a {
+            color: white;
+            /* Link text color */
+            text-decoration: none;
+            /* Remove underline */
+            padding: 10px;
+            /* Padding for links */
+            border-radius: 6px;
+            /* Rounded corners */
+            transition: background-color 0.3s;
+            /* Transition effect */
+        }
+
+        .header-links a:hover {
+            background-color: #0056b3;
+            /* Background color on hover */
+        }
+
+        .logout-btn {
+            background-color: #dc3545;
+            /* Logout button background color */
+            padding: 10px 20px;
+            /* Padding for the button */
+            border: none;
+            /* Remove border */
+            border-radius: 6px;
+            /* Rounded corners */
+            color: white;
+            /* Button text color */
+            cursor: pointer;
+            /* Pointer cursor */
+            transition: background-color 0.3s;
+            /* Transition effect */
+        }
+
+        .logout-btn:hover {
+            background-color: #c82333;
+            /* Background color on hover */
+        }
+
+
+        .logo {
+            font-size: 1.8em;
+            font-weight: bold;
+        }
+
+        .logout-btn {
+            background-color: #dc3545;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .logout-btn:hover {
+            background-color: #c82333;
+        }
+
+        /* Dashboard Styles */
+        .dashboard-container {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            overflow: auto;
+            flex: 1;
+            /* Take up remaining space */
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 100%;
+            box-sizing: border-box;
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: scale(1.02);
+        }
+
+        .card h3 {
+            margin: 0 0 10px;
+            color: #333;
+        }
+
+        .card p {
+            margin: 10px 0 20px;
+            color: #666;
+            font-size: 1em;
+        }
+
+        .card button {
+            background-color: #28a745;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            color: white;
+            font-size: 1em;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+
+        .card button:hover {
+            background-color: #218838;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .card {
+                width: calc(100% - 20px);
+            }
+
+            .header-links {
+                flex-direction: column;
+                /* Stack links vertically on small screens */
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">ExamGuard</div>
+        <div class="header-links">
+            <a href="#" onclick="showDashboard()">Dashboard</a>
+            <a href="#" onclick="showExams()">Exams</a>
+            <a href="#" onclick="showReports()">Reports</a>
+            <a href="#" onclick="showSettings()">Settings</a>
+            <button class="logout-btn" onclick="logout()">Logout</button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <header>
+            <div class="logo">ExamGuard</div>
+            <div class="header-links">
+                <a href="#" onclick="showDashboard()">Monitor Students</a>
+                <a href="#" onclick="showExams()">Notifications</a>
+                <a href="#" onclick="showReports()">Reports</a>
+                <a href="#" onclick="showSettings()">Settings</a>
+                <button class="logout-btn" onclick="logout()">Logout</button>
+            </div>
+        </header>
+
+        <!-- Dashboard Content -->
+        <div id="dashboard" class="dashboard-container">
+            <h2>Welcome, Admin</h2>
+            <!-- <div class="card">
+                <h3>Active Exams</h3>
+                <p>Details about currently active exams.</p>
+                <button onclick="startMonitoring()">Start Monitoring</button>
+            </div>
+            <div class="card">
+                <h3>Upcoming Exams</h3>
+                <p>Details about upcoming exams.</p>
+                <button onclick="viewExamDetails()">View Details</button>
+            </div> -->
+            <div class="card">
+                <h3>Start monitroing</h3>
+                <p>Monitor students.</p>
+                <button onclick="viewReports()">View Reports</button>
+            </div>
+            <div class="card">
+                <h3>Student Reports</h3>
+                <p>View reports of student performance.</p>
+                <button onclick="viewReports()">View Reports</button>
+            </div>
+            <div class="card">
+                <h3>Settings</h3>
+                <p>Manage system settings.</p>
+                <button onclick="openSettings()">Open Settings</button>
+            </div>
+            <div class="card">
+                <h3>Notifications</h3>
+                <p>Check recent notifications.</p>
+                <button onclick="checkNotifications()">Check Notifications</button>
+            </div>
+            <div class="card">
+                <h3>User Management</h3>
+                <p>Manage users and roles.</p>
+                <button onclick="manageUsers()">Manage Users</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Function to show the dashboard
+        function showDashboard() {
+            // Logic to show the dashboard
+            console.log("Showing dashboard...");
+        }
+
+        // Function to log out
+        function logout() {
+            console.log("Logging out...");
+            // Logic for logging out
+        }
+
+        // Additional functions for navigation can be added here
+        function startMonitoring() {
+            console.log("Starting monitoring...");
+        }
+
+        function viewExamDetails() {
+            console.log("Viewing exam details...");
+        }
+
+        function viewReports() {
+            console.log("Viewing reports...");
+        }
+
+        function openSettings() {
+            console.log("Opening settings...");
+        }
+
+        function checkNotifications() {
+            console.log("Checking notifications...");
+        }
+
+        function manageUsers() {
+            console.log("Managing users...");
+        }
+    </script>
+
+</body>
+
+</html>

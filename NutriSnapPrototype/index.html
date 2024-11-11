@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NutriSnap</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>NutriSnap</h1>
+        <p>AI-powered Food Diary and Nutrient Analysis</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#upload">Upload Meal</a></li>
+            <li><a href="#result">View Result</a></li>
+        </ul>
+    </nav>
+
+    <section id="home">
+        <h2>Welcome to NutriSnap</h2>
+        <p>Track your nutrition effortlessly with AI-powered food recognition. Snap a photo of your meal, and let us do the rest!</p>
+        <a href="#upload" class="button">Upload a Meal</a>
+    </section>
+
+    <section id="upload">
+        <h2>Upload Your Meal</h2>
+        <form action="result.html" method="post" enctype="multipart/form-data">
+            <label for="meal-image">Choose an image of your meal:</label>
+            <input type="file" id="meal-image" name="meal-image" accept="image/*" required>
+            <button type="submit">Analyze Meal</button>
+        </form>
+    </section>
+
+    <section id="result">
+        <h2>Nutrition Analysis</h2>
+        <p><strong>Meal:</strong> Grilled Chicken Salad</p>
+        <p><strong>Calories:</strong> 350 kcal</p>
+        <p><strong>Proteins:</strong> 30g</p>
+        <p><strong>Carbohydrates:</strong> 25g</p>
+        <p><strong>Fats:</strong> 10g</p>
+        <p><strong>Sugar:</strong> 5g</p>
+        <p><strong>Suggested Healthier Option:</strong> Add more leafy greens for fiber and reduce the dressing for fewer fats.</p>
+        <a href="#home" class="button">Back to Home</a>
+    </section>
+
+    <footer>
+        <p>NutriSnap © 2024. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

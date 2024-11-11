@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>AI Fake Tweet Detector</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>AI-Based Fake Tweet Detection</h1>
+            <p>Identify real or fake tweets using machine learning models</p>
+        </header>
+
+        <section class="input-section">
+            <h2>Enter Tweet Information</h2>
+            <form id="fake-tweet-detector-form">
+                <div class="input-group">
+                    <label for="tweet-content">Tweet Content</label>
+                    <textarea id="tweet-content" placeholder="Paste the tweet text here..." rows="5"></textarea>
+                </div>
+
+                <div class="input-group">
+                    <label for="follower-count">Number of Followers</label>
+                    <input type="number" id="follower-count" placeholder="Enter the follower count">
+                </div>
+
+                <div class="input-group">
+                    <label for="verified-status">Verified Account</label>
+                    <select id="verified-status">
+                        <option value="true">Yes</option>
+                        <option value="false">No</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="submit-btn">Detect Fake Tweet</button>
+            </form>
+        </section>
+
+        <section class="result-section" id="result-section">
+            <h2>Prediction Result</h2>
+            <p id="prediction-result">The AI will classify the tweet as <span>Real or Fake</span>.</p>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 AI Fake Tweet Detector | Powered by Machine Learning</p>
+    </footer>
+</body>
+</html>

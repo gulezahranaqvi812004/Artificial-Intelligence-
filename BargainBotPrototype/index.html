@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freelance Platform API Integration</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Freelancer Dashboard</h1>
+        </header>
+
+        <!-- Navigation Bar -->
+        <nav>
+            <ul>
+                <li><a href="#">Active Negotiations</a></li>
+                <li><a href="#">Client History</a></li>
+                <li><a href="#">AI Settings</a></li>
+                <li><a href="#">Profile</a></li>
+            </ul>
+        </nav>
+
+        <!-- Active Negotiations Section -->
+        <section class="active-negotiations">
+            <h2>Active Negotiations</h2>
+            <div class="negotiation-card">
+                <h3>Project: Web Design</h3>
+                <p>Client: Fatima Zahra</p>
+                <p>Current Offer: $500</p>
+                <p>AI Offer: $700</p>
+                <p>Client Agreed On: $650</p>
+                <p><strong>Final Result: Pending Decision</strong></p>
+                <button class="final-btn" onclick="finalizeDecision('accepted', 'web-design')">Accept Offer</button>
+                <button class="final-btn reject-btn" onclick="finalizeDecision('rejected', 'web-design')">Reject Offer</button>
+            </div>
+
+            <div class="negotiation-card">
+                <h3>Project: Mobile App Development</h3>
+                <p>Client: Wajeeha Batool</p>
+                <p>Current Offer: $1200</p>
+                <p>AI Offer: $1500</p>
+                <p>Client Agreed On: $1450</p>
+                <p><strong>Final Result: Pending Decision</strong></p>
+                <button class="final-btn" onclick="finalizeDecision('accepted', 'mobile-app')">Accept Offer</button>
+                <button class="final-btn reject-btn" onclick="finalizeDecision('rejected', 'mobile-app')">Reject Offer</button>
+            </div>
+
+            <div class="negotiation-card">
+                <h3>Project: Logo Design</h3>
+                <p>Client: Mike Ross</p>
+                <p>Current Offer: $300</p>
+                <p>AI Offer: $400</p>
+                <p>Client Agreed On: $0 (Rejected Offer)</p>
+                <p><strong>Final Result: No Deal</strong></p>
+            </div>
+        </section>
+
+        <!-- AI Settings Section -->
+        <section class="ai-settings">
+            <h2>AI Negotiation Settings</h2>
+            <form>
+                <label for="negotiation-style">Negotiation Style:</label>
+                <select id="negotiation-style" name="style">
+                    <option value="moderate">Moderate</option>
+                    <option value="aggressive">Aggressive</option>
+                    <option value="conservative">Conservative</option>
+                </select>
+
+                <label for="min-price">Minimum Price:</label>
+                <input type="number" id="min-price" name="min-price" placeholder="$100">
+
+                <label for="max-price">Maximum Price:</label>
+                <input type="number" id="max-price" name="max-price" placeholder="$1000">
+
+                <input type="submit" value="Save Settings">
+            </form>
+        </section>
+    </div>
+
+    <!-- JavaScript to handle decision logic -->
+    <script>
+        function finalizeDecision(decision, project) {
+            const card = document.querySelector(`.negotiation-card h3:contains('${project}')`).parentElement;
+            const finalResult = card.querySelector("p strong");
+            
+            if (decision === "accepted") {
+                finalResult.textContent = "Final Result: Offer Accepted";
+                card.querySelector(".final-btn").style.display = "none";
+                card.querySelector(".reject-btn").style.display = "none";
+            } else {
+                finalResult.textContent = "Final Result: Offer Rejected";
+                card.querySelector(".final-btn").style.display = "none";
+                card.querySelector(".reject-btn").style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>

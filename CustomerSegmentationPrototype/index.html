@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Prediction Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>AI Prediction Dashboard</h1>
+        <nav>
+            <ul>
+                <li><a href="#upload">Upload Data</a></li>
+                <li><a href="#overview">Data Overview</a></li>
+                <li><a href="#clustering">Clustering</a></li>
+                <li><a href="#performance">Model Performance</a></li>
+                <li><a href="#insights">Insights</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Section for Data Upload -->
+        <section id="upload" class="data-upload">
+            <h2>Upload Data</h2>
+            <p>Select a CSV file containing your data for analysis.</p>
+            <input type="file" id="fileUpload" accept=".csv">
+            <button>Upload</button>
+            <div class="upload-status">
+                <p>Progress:</p>
+                <progress id="uploadProgress" value="0" max="100"></progress>
+            </div>
+        </section>
+
+        <!-- Section for Data Overview -->
+        <section id="overview" class="data-overview">
+            <h2>Data Overview</h2>
+            <p>Here is a preview of the data you uploaded.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Feature 1</th>
+                        <th>Feature 2</th>
+                        <th>Feature 3</th>
+                        <th>Feature 4</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>23.4</td>
+                        <td>45.1</td>
+                        <td>16.7</td>
+                        <td>8.9</td>
+                    </tr>
+                    <tr>
+                        <td>12.8</td>
+                        <td>35.7</td>
+                        <td>12.4</td>
+                        <td>4.6</td>
+                    </tr>
+                    <!-- Additional rows dynamically generated -->
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Section for Clustering Parameters and Results -->
+        <section id="clustering" class="clustering-results">
+            <h2>Clustering Parameters</h2>
+            <p>Configure clustering settings:</p>
+            <label for="clusters">Number of Clusters:</label>
+            <input type="number" id="clusters" min="2" max="10" value="3">
+            <button>Run Clustering</button>
+
+            <h2>Clustering Results</h2>
+            <div id="clusterDisplay">
+                <!-- Visual representation of clusters goes here -->
+                <p>Clusters will be displayed here after processing.</p>
+            </div>
+        </section>
+
+        <!-- Section for Model Performance -->
+        <section id="performance" class="model-performance">
+            <h2>Model Performance</h2>
+            <div id="performanceMetrics">
+                <div class="metric">
+                    <p><strong>Accuracy:</strong> 85%</p>
+                </div>
+                <div class="metric">
+                    <p><strong>Precision:</strong> 80%</p>
+                </div>
+                <div class="metric">
+                    <p><strong>Recall:</strong> 75%</p>
+                </div>
+                <div class="metric">
+                    <p><strong>F1 Score:</strong> 78%</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section for Insights -->
+        <section id="insights" class="insights">
+            <h2>Actionable Insights</h2>
+            <div class="insight-box">
+                <h3>Marketing Insights</h3>
+                <p>Based on the clustering results, we recommend targeting customers in cluster 2 for your next marketing campaign, as they have shown high purchase intent.</p>
+            </div>
+            <div class="insight-box">
+                <h3>Product Insights</h3>
+                <p>Cluster 3 indicates a preference for Product B, suggesting increasing focus on improving features related to this product.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 AI Marketing Insights | All Rights Reserved</p>
+    </footer>
+</body>
+</html>

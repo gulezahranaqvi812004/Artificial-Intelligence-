@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Analysis - SereneAI</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            color: #333;
+        }
+
+        header {
+            background-color: #4a90e2;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 36px;
+        }
+
+        section {
+            padding: 20px;
+            max-width: 600px;
+            margin: auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        video {
+            width: 100%;
+            border: 2px solid #4a90e2;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            background-color: #4a90e2;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: block;
+            margin: 20px auto;
+        }
+
+        button:hover {
+            background-color: #357ABD;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #4a90e2;
+            color: white;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>SereneAI</h1>
+    <p>AI-Powered Mental Health Monitoring</p>
+</header>
+
+<section>
+    <h2>Facial Feature Mood Analysis</h2>
+    <video id="video" autoplay></video>
+    <button id="startButton">Analyze Mood</button>
+    <div id="result"></div>
+</section>
+
+<footer>
+    <p>&copy; 2024 SereneAI. All Rights Reserved.</p>
+</footer>
+
+<script defer src="https://cdn.jsdelivr.net/npm/@vladmandic/face-api@latest"></script>
+<script>
+    const video = document.getElementById('video');
+    const startButton = document.getElementById('startButton');
+    const resultDiv = document.getElementById('result');
+
+    async function setupCamera() {
+        const stream = await navigator.mediaDevices.getUserMedia({
+            video: true
+        });
+        video.srcObject = stream;
+
+        return new Promise((resolve) => {
+            video.onloadedmetadata = () => {
+                resolve(video);
+            };
+        });
+    }
+
+    async function loadModels() {
+        const MODEL_URL = '/models'; // Adjust based on your model path
+        await faceapi.nets.tinyFaceDetector.loadFromUri(MODEL_URL);
+        await faceapi.nets.faceLandmark68Net.loadFromUri(MODEL_URL);
+        await faceapi.nets.faceExpressionNet.loadFromUri(MODEL_URL);
+    }
+
+    async function analyzeMood() {
+        const detections = await faceapi.detectSingleFace(video, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions();
+        
+        if (detections) {
+            const mood = detections.expressions;
+            const moodText = `Detected Mood: ${Object.keys(mood).reduce((a, b) => mood[a] > mood[b] ? a : b)}`;
+            resultDiv.innerHTML = moodText;
+        } else {
+            resultDiv.innerHTML = "No face detected. Please try again.";
+        }
+    }
+
+    startButton.addEventListener('click', analyzeMood);
+
+    (async () => {
+        await loadModels();
+        await setupCamera();
+        video.play();
+    })();
+</script>
+
+</body>
+</html>
